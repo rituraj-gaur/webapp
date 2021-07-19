@@ -14,8 +14,8 @@ pipeline {
         }
         stage ('Check-secrets') {
                     steps {
-                        sh 'rm truffle-log || true'
-                        sh 'trufflehog --json https://github.com/rituraj-gaur/webapp.git > truffle-log'
+                        sh "rm truffle-log || true"
+                        sh "trufflehog --json https://github.com/rituraj-gaur/webapp.git > truffle-log"
                     }
                 }
         stage ('Build') {
