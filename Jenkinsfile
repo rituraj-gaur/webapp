@@ -19,8 +19,8 @@ pipeline {
                     steps {
                         sh "rm truffle-log || true"
                         //sh "trufflehog --json https://github.com/rituraj-gaur/webapp.git > truffle-log"
-                        sh "docker run gesellix/trufflehog --json  https://github.com/rituraj-gaur/webapp.git > truffle"
-                        sh "cat trufflehog"
+                        sh "docker run gesellix/trufflehog --json  https://github.com/rituraj-gaur/webapp.git > truffle-log"
+                        sh "cat truffle-log"
                     }
                 }
         stage ('Build') {
