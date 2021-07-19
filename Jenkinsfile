@@ -10,8 +10,8 @@ pipeline {
         stage ('Initialize') {
             steps {
                 sh '''
-                    echo "The path is now:"
-                    echo $PATH
+                    echo "The workspace path is now:"
+                    echo $WORKSPACE
                 ''' 
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage ('Source-Composition-Analysis') {
         		steps {
         		     sh 'rm owasp-* || true'
-        		     sh "echo `whoami`"
+        		     sh "echo `whoami`"ENK
         		     sh 'echo FIND ME'
         		     sh 'wget https://raw.githubusercontent.com/rituraj-gaur//webapp/master/owasp-dependency-check.sh'
         		     sh 'chmod +x owasp-dependency-check.sh'
