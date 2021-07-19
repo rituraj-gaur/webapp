@@ -8,6 +8,9 @@ pipeline {
             steps {
                 sh '''
                     echo "PATH = ${PATH}"
+                    export PATH="/home/thanos/.local/bin:$PATH"
+                    echo "Modified paths now"
+                    echo "PATH = $(PATH)"
                     echo "M3_HOME = ${M3_HOME}"
                 ''' 
             }
