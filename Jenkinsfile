@@ -3,11 +3,15 @@ pipeline {
     tools { 
         maven 'M3'
     }
+    environment {
+        PATH = "/home/thanos/.local/bin/:$PATH"
+      }
     stages {
         stage ('Initialize') {
             steps {
                 sh '''
-                    echo "PATH = ${PATH}"
+                    echo "The path is now:"
+                    echo $PATH
                 ''' 
             }
         }
