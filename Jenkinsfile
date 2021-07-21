@@ -23,17 +23,24 @@ pipeline {
                         sh "cat truffle-log"
                     }
                 }
-        stage ('Source-Composition-Analysis') {
+        stage ('SCA') {
                 		steps {
                 		     sh 'rm owasp-* || true'
-                		     sh "echo `whoami`"
-                		     sh 'echo FIND ME'
-                		     sh 'wget https://raw.githubusercontent.com/rituraj-gaur//webapp/master/owasp-dependency-check.sh'
+
+                 sh 'wget https://raw.githubusercontent.com/rituraj-gaur//webapp/master/owasp-dependency-check.sh'
                 		     sh 'chmod +x owasp-dependency-check.sh'
                 		     sh 'bash owasp-dependency-check.sh'
                 		     sh 'cat /home/jenkins/OWASP-Dependency-Check/reports/dependency-check-report.xml'
                 		}
                 	}
+        stage ('SAST') {
+        		steps {
+        		withSonarQubeEnv('sonar-secret') {
+        			sh 'mvn sonar:sonar'
+        			sh 'cat target/sonar/report-task.txt'
+        		       }
+        		}
+        	}
         stage ('Build') {
             steps {
                 sh 'mvn clean package'
